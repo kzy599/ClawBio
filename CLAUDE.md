@@ -36,11 +36,12 @@ When the user asks a question, match it to a skill and act:
 | Genome compatibility, mating pairs, heterozygosity, Genomebook match, breeding pairs | `skills/genome-match/` | Run `genome_match.py` |
 | Recombination, offspring, breed, meiosis, next generation, Genomebook breed | `skills/recombinator/` | Run `recombinator.py` |
 | Fine-mapping, SuSiE, ABF, credible sets, PIP, posterior inclusion probability, causal variant, fine map locus, FINEMAP, polyfun | `skills/fine-mapping/` | Run `fine_mapping.py` |
+| Animal breeding, genomic selection, EBV, GBLUP, HI-BLUP, estimated breeding value | `skills/hiblup-ebv/` | Run `hiblup_ebv.py` |
 | LLM benchmark, benchmark language models, biobank knowledge retrieval, coverage score, weighted coverage, model comparison biobank, semantic similarity benchmark | `skills/llm-biobank-bench/` | Read SKILL.md, apply methodology |
 
 ## How to Use a Skill
 
-### Skills with Python scripts (pharmgx-reporter, equity-scorer, nutrigx_advisor, scrna-orchestrator, bio-orchestrator, clinpgx, gwas-prs, gwas-lookup, profile-report, ukb-navigator, galaxy-bridge, rnaseq-de, methylation-clock, protocols-io, soul2dna, genome-match, recombinator, labstep, fine-mapping)
+### Skills with Python scripts (pharmgx-reporter, equity-scorer, nutrigx_advisor, scrna-orchestrator, bio-orchestrator, clinpgx, gwas-prs, gwas-lookup, profile-report, ukb-navigator, galaxy-bridge, rnaseq-de, methylation-clock, protocols-io, soul2dna, genome-match, recombinator, labstep, fine-mapping, hiblup-ebv)
 1. Read the skill's `SKILL.md` for domain context
 2. Run the Python script with correct CLI arguments (see below)
 3. Show the user the output — open any generated figures and explain results
@@ -173,6 +174,12 @@ python skills/fine-mapping/fine_mapping.py \
   --ld ld_matrix.npy --output <report_dir>
 python skills/fine-mapping/fine_mapping.py --demo --output /tmp/finemapping_demo
 
+# HI-BLUP EBV — GBLUP estimated breeding values
+python skills/hiblup-ebv/hiblup_ebv.py \
+  --input <input_dir> --output <report_dir> --trait-pos 4
+python skills/hiblup-ebv/hiblup_ebv.py --demo --output /tmp/hiblup_demo
+
+
 # Labstep ELN bridge — experiments, protocols, inventory
 python skills/labstep/labstep.py --demo
 python skills/labstep/labstep.py --experiments [--search QUERY] [--count N]
@@ -211,6 +218,7 @@ For instant demos when the user has no data:
 | Recombinator demo (Einstein x Anning, 3 offspring) | `--demo` flag | recombinator |
 | Labstep demo (3 experiments, protocols, inventory) | `--demo` flag | labstep |
 | Fine-mapping demo (200-variant locus, 2 causal signals, SuSiE) | `--demo` flag | fine-mapping |
+| HI-BLUP demo (synthetic phe/geno/sel/ref tables) | `--demo` flag | hiblup-ebv |
 | Corpas 30x chr20 SNPs + indels (WGS) | `corpas-30x/subsets/chr20_snps_indels.vcf.gz` | variant-annotation, equity-scorer |
 | Corpas 30x SV calls (WGS) | `corpas-30x/subsets/sv_calls.vcf.gz` | variant-annotation |
 | Corpas 30x CNV calls (WGS) | `corpas-30x/subsets/cnv_calls.vcf.gz` | variant-annotation |
@@ -293,6 +301,12 @@ python skills/labstep/labstep.py --demo --output /tmp/labstep
 
 # SuSiE fine-mapping demo
 python skills/fine-mapping/fine_mapping.py --demo --output /tmp/finemapping_demo
+
+# HI-BLUP EBV — GBLUP estimated breeding values
+python skills/hiblup-ebv/hiblup_ebv.py \
+  --input <input_dir> --output <report_dir> --trait-pos 4
+python skills/hiblup-ebv/hiblup_ebv.py --demo --output /tmp/hiblup_demo
+
 
 ```
 

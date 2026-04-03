@@ -515,6 +515,21 @@ SKILLS = {
         "allowed_extra_flags": {"--genes", "--assembly"},
         "accepts_genotypes": False,
     },
+    "hiblup": {
+        "script": SKILLS_DIR / "hiblup-ebv" / "hiblup_ebv.py",
+        "demo_args": ["--demo"],
+        "description": "HI-BLUP GBLUP EBV estimator (phenotype + genotype to EBV tables)",
+        "allowed_extra_flags": {
+            "--trait-pos",
+            "--threads",
+            "--plink-format",
+            "--phe-file",
+            "--geno-file",
+            "--sel-file",
+            "--ref-file",
+        },
+        "accepts_genotypes": False,
+    },
     "llm-bench": {
         "script": SKILLS_DIR / "llm-biobank-bench" / "llm_biobank_bench.py",
         "demo_args": ["--demo"],
@@ -1084,6 +1099,13 @@ def main():
     run_parser.add_argument("--container", default=None, help="Canonical object/container hint for bioc skill")
     run_parser.add_argument("--modality", default=None, help="Modality hint for bioc skill")
     run_parser.add_argument("--max-results", type=int, default=None, help="Maximum bioc search/recommendation results")
+    run_parser.add_argument("--phe-file", default=None, help="Phenotype filename within --input directory (hiblup skill)")
+    run_parser.add_argument("--geno-file", default=None, help="Genotype filename within --input directory (hiblup skill)")
+    run_parser.add_argument("--sel-file", default=None, help="Selection ID filename within --input directory (hiblup skill)")
+    run_parser.add_argument("--ref-file", default=None, help="Reference ID filename within --input directory (hiblup skill)")
+    run_parser.add_argument("--trait-pos", type=int, default=None, help="Trait column position, 1-based (hiblup skill)")
+    run_parser.add_argument("--threads", type=int, default=None, help="Thread count for hiblup/plink (hiblup skill)")
+    run_parser.add_argument("--plink-format", action="store_true", help="Treat genotype input as PLINK format (hiblup skill)")
 
     args = parser.parse_args()
 
@@ -1252,6 +1274,20 @@ def main():
             extra.extend(["--modality", args.modality])
         if getattr(args, "max_results", None) is not None:
             extra.extend(["--max-results", str(args.max_results)])
+        if getattr(args, "phe_file", None):
+            extra.extend(["--phe-file", args.phe_file])
+        if getattr(args, "geno_file", None):
+            extra.extend(["--geno-file", args.geno_file])
+        if getattr(args, "sel_file", None):
+            extra.extend(["--sel-file", args.sel_file])
+        if getattr(args, "ref_file", None):
+            extra.extend(["--ref-file", args.ref_file])
+        if getattr(args, "trait_pos", None) is not None:
+            extra.extend(["--trait-pos", str(args.trait_pos)])
+        if getattr(args, "threads", None) is not None:
+            extra.extend(["--threads", str(args.threads)])
+        if getattr(args, "plink_format", False):
+            extra.append("--plink-format")
 
         result = run_skill(
             skill_name=args.skill,
