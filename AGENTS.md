@@ -4,7 +4,8 @@ This guide is for AI coding agents (Codex, Devin, Cursor, Claude Code, Copilot W
 
 ## Project Overview
 
-ClawBio is a bioinformatics AI agent skill library built on [OpenClaw](https://github.com/OpenClaw/OpenClaw). Each skill is a self-contained module that performs a specific genomic analysis task (pharmacogenomics, ancestry PCA, GWAS lookup, etc.) via CLI or Python API. All processing is local-first — genetic data never leaves the machine.
+ClawBio is a bioinformatics and genetic breeding AI agent skill library built on [OpenClaw](https://github.com/OpenClaw/OpenClaw). Each skill is a self-contained module that performs a specific genomic analysis task (pharmacogenomics, ancestry PCA, GWAS lookup, genomic prediction,etc.) via CLI or Python API. All processing is local-first — genetic data never leaves the machine.
+
 
 ## Setup
 
