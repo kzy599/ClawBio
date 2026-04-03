@@ -10,7 +10,7 @@ ClawBio is a bioinformatics AI agent skill library built on [OpenClaw](https://g
 
 ```bash
 # Clone
-git clone https://github.com/ClawBio/ClawBio.git && cd ClawBio
+git clone https://github.com/kzy599/ClawBio/ClawBio.git && cd ClawBio
 
 # Install dependencies
 pip install -r requirements.txt
