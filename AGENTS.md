@@ -156,21 +156,3 @@ These are non-negotiable constraints:
 | `requirements.txt` | Core Python dependencies |
 | `pytest.ini` | Test path registration |
 | `Makefile` | `make test`, `make demo`, `make list` |
-
-## Registered Skill Notes
-
-- **hiblup-ebv** (`cli_alias`: `hiblup`): HI-BLUP GBLUP EBV estimator for phenotype + genotype workflows.
-- Main script: `skills/hiblup-ebv/hiblup_ebv.py`
-- Demo command: `python clawbio.py run hiblup --demo`
-- Example run with user data:
-
-```bash
-python clawbio.py run hiblup \
-  --input <input_dir> \
-  --output <output_dir> \
-  --phe-file phe.csv \
-  --geno-file geno.csv \
-  --sel-file sel_id.csv \
-  --ref-file ref_id.csv \
-  --trait-pos 4
-```
